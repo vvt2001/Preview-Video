@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import Photos
+import AVFoundation
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var videoSelectorView: UIView!
     @IBOutlet weak var selectVideoButton: UIButton!
+    
+    private var videoPHAssets = [PHAsset]()
+    
+    @IBAction private func showVideoPreview(_ sender: UIButton){
+        let previewVideoViewController = PreviewVideoViewController()
+        previewVideoViewController.videoPHAssets = videoPHAssets
+        self.navigationController?.pushViewController(previewVideoViewController, animated: true)
+    }
     
     private func giveSelectorViewRoundEdges(){
         let path = UIBezierPath(roundedRect:videoSelectorView.bounds,
@@ -22,21 +31,29 @@ class ViewController: UIViewController {
     }
     
     private func setupButton(){
-        selectVideoButton.layer.cornerRadius = 0.45 * selectVideoButton.bounds.size.width
+        selectVideoButton.layer.cornerRadius = 0.46 * selectVideoButton.bounds.size.width
         selectVideoButton.layer.shadowRadius = 15
         selectVideoButton.layer.shadowOpacity = 0.7
         selectVideoButton.layer.shadowColor = selectVideoButton.backgroundColor?.cgColor
     }
     
-    @IBAction private func showVideoPreview(_ sender: UIButton){
-        let previewVideoViewController = PreviewVideoViewController()
-        self.navigationController?.pushViewController(previewVideoViewController, animated: true)
+    private func loadAssetFromPhotos(){
+        PHPhotoLibrary.requestAuthorization{ status in
+            if status == .authorized {
+                let videoAssets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
+                videoAssets.enumerateObjects{ (object, _, _) in
+                    self.videoPHAssets.append(object)
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.isHidden = true
         setupButton()
+        loadAssetFromPhotos()
     }
     
     override func viewDidLayoutSubviews() {
