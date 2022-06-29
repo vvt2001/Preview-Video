@@ -14,6 +14,7 @@
                 <outlet property="bottomGradientView" destination="m5S-Gg-rTD" id="qF0-2D-6Tf"/>
                 <outlet property="currentTimeLabel" destination="7yZ-Wm-csC" id="5Ns-Qe-a7m"/>
                 <outlet property="playAndPauseButton" destination="8iD-5S-K79" id="2Jf-Yd-OR7"/>
+                <outlet property="seekBarSlider" destination="bMP-i1-2p4" id="F7w-8j-QGl"/>
                 <outlet property="tapRecognizer" destination="b6Z-iv-8Ub" id="YCH-kQ-FlN"/>
                 <outlet property="topGradientView" destination="8TZ-O3-6Le" id="s72-Oi-YDa"/>
                 <outlet property="totalDurationLabel" destination="lpl-l6-DhU" id="JNs-Pf-lB4"/>
@@ -53,23 +54,30 @@
                             <rect key="frame" x="0.0" y="764" width="414" height="54"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yZ-Wm-csC">
-                                    <rect key="frame" x="8" y="17" width="35.5" height="20.5"/>
+                                    <rect key="frame" x="8" y="17" width="39" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpl-l6-DhU">
-                                    <rect key="frame" x="406" y="27" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="367" y="27" width="39" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bMP-i1-2p4" customClass="CustomSlider" customModule="Preview_Video" customModuleProvider="target">
-                                    <rect key="frame" x="49.5" y="12" width="350.5" height="31"/>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="bMP-i1-2p4" customClass="CustomSlider" customModule="Preview_Video" customModuleProvider="target">
+                                    <rect key="frame" x="53" y="12" width="308" height="31"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="thumbRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="changeVideoTime:" destination="-1" eventType="valueChanged" id="VbP-AM-Wup"/>
+                                        <outletCollection property="gestureRecognizers" destination="igB-aw-V2x" appends="YES" id="n9g-bW-Hx1"/>
                                     </connections>
                                 </slider>
                             </subviews>
@@ -80,8 +88,10 @@
                                 <constraint firstItem="7yZ-Wm-csC" firstAttribute="centerY" secondItem="m5S-Gg-rTD" secondAttribute="centerY" id="Dkg-ne-uXE"/>
                                 <constraint firstAttribute="trailing" secondItem="lpl-l6-DhU" secondAttribute="trailing" constant="8" id="GQ6-cj-NRO"/>
                                 <constraint firstItem="bMP-i1-2p4" firstAttribute="leading" secondItem="7yZ-Wm-csC" secondAttribute="trailing" constant="8" id="NoY-DA-3w0"/>
+                                <constraint firstItem="bMP-i1-2p4" firstAttribute="leading" secondItem="m5S-Gg-rTD" secondAttribute="leading" constant="55" id="Yjw-rW-2R1"/>
                                 <constraint firstItem="7yZ-Wm-csC" firstAttribute="leading" secondItem="m5S-Gg-rTD" secondAttribute="leading" constant="8" id="nmN-xj-Zni"/>
                                 <constraint firstItem="lpl-l6-DhU" firstAttribute="leading" secondItem="bMP-i1-2p4" secondAttribute="trailing" constant="8" id="wFO-NR-tQD"/>
+                                <constraint firstAttribute="trailing" secondItem="bMP-i1-2p4" secondAttribute="trailing" constant="55" id="y04-yI-SHI"/>
                             </constraints>
                         </view>
                         <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iD-5S-K79">
@@ -127,11 +137,16 @@
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
         </view>
-        <tapGestureRecognizer id="b6Z-iv-8Ub">
+        <tapGestureRecognizer cancelsTouchesInView="NO" id="b6Z-iv-8Ub">
             <connections>
                 <action selector="handleTap:" destination="-1" id="Hm8-ji-FOH"/>
             </connections>
         </tapGestureRecognizer>
+        <panGestureRecognizer cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="igB-aw-V2x">
+            <connections>
+                <action selector="handleSliderPanGesture:" destination="-1" id="mOx-ig-Kiz"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="pause" width="60" height="60"/>
