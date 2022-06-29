@@ -10,14 +10,14 @@ import AVFoundation
 import Photos
 
 class PreviewVideoViewController: UIViewController {
-    @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var topGradientView: UIView!
-    @IBOutlet weak var bottomGradientView: UIView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var currentTimeLabel: UILabel!
-    @IBOutlet weak var totalDurationLabel: UILabel!
-    @IBOutlet weak var playAndPauseButton: UIButton!
-    @IBOutlet var tapRecognizer: UITapGestureRecognizer!
+    @IBOutlet private weak var videoView: UIView!
+    @IBOutlet private weak var topGradientView: UIView!
+    @IBOutlet private weak var bottomGradientView: UIView!
+    @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var currentTimeLabel: UILabel!
+    @IBOutlet private weak var totalDurationLabel: UILabel!
+    @IBOutlet private weak var playAndPauseButton: UIButton!
+    @IBOutlet private var tapRecognizer: UITapGestureRecognizer!
     
     var videoPHAssets: [PHAsset]!
     private var currentAsset: PHAsset?
