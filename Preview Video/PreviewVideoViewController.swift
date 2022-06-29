@@ -37,28 +37,7 @@ class PreviewVideoViewController: UIViewController {
     }
     
     @IBAction private func playAndPause(_ sender: UIButton){
-        if isPlaying{
-            isPlaying = false
-            currentAsset?.getAVAsset(completionHandler: { asset in
-                //setup player
-                let playerItem = AVPlayerItem(asset: asset!)
-                let currentVideoPlayer = AVPlayer(playerItem: playerItem)
-                //play video
-                currentVideoPlayer.pause()
-            })
-            playAndPauseButton.setImage(UIImage(named: "play"), for: .normal)
-        }
-        else{
-            isPlaying = true
-            currentAsset?.getAVAsset(completionHandler: { asset in
-                //setup player
-                let playerItem = AVPlayerItem(asset: asset!)
-                let currentVideoPlayer = AVPlayer(playerItem: playerItem)
-                //play video
-                currentVideoPlayer.play()
-            })
-            playAndPauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        }
+
     }
     
     private func hideButton(){
