@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="Preview_Video" customModuleProvider="target">
             <connections>
+                <outlet property="selectVideoButton" destination="KNU-59-eT0" id="DtA-1T-JiW"/>
+                <outlet property="videoSelectorView" destination="8I1-6K-Rf7" id="VRU-lx-nMG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="nmv-lG-lah"/>
             </connections>
         </placeholder>
@@ -17,12 +19,58 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8I1-6K-Rf7">
+                    <rect key="frame" x="0.0" y="131" width="414" height="731"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNU-59-eT0">
+                            <rect key="frame" x="174" y="332.5" width="66" height="66"/>
+                            <color key="backgroundColor" red="1" green="0.42352941176470588" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="KNU-59-eT0" secondAttribute="height" multiplier="1:1" id="M3F-it-kpU"/>
+                            </constraints>
+                            <color key="tintColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" title=""/>
+                            <connections>
+                                <action selector="showVideoPreview:" destination="-1" eventType="touchUpInside" id="nw6-Xb-DJT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="tintColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="KNU-59-eT0" firstAttribute="centerY" secondItem="8I1-6K-Rf7" secondAttribute="centerY" id="XNy-Xl-Nzh"/>
+                        <constraint firstItem="KNU-59-eT0" firstAttribute="centerX" secondItem="8I1-6K-Rf7" secondAttribute="centerX" id="nzk-tU-TuV"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.3411764705882353" green="0.37254901960784315" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8I1-6K-Rf7" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="5ZT-30-ves"/>
+                <constraint firstItem="8I1-6K-Rf7" firstAttribute="height" secondItem="vUN-kp-3ea" secondAttribute="height" multiplier="0.893864" id="CHz-FW-A9u"/>
+                <constraint firstItem="8I1-6K-Rf7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KVm-3C-MdE"/>
+                <constraint firstItem="KNU-59-eT0" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.16" id="Odm-1u-qWW"/>
+                <constraint firstItem="8I1-6K-Rf7" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="kGN-5l-5o5"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="114"/>
         </view>
+        <navigationController id="bAA-hm-he4">
+            <navigationBar key="navigationBar" contentMode="scaleToFill" id="cSh-sv-eFD">
+                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </navigationBar>
+            <viewControllers>
+                <tableViewController id="9e8-kF-OmT">
+                    <navigationItem key="navigationItem" title="Root View Controller" id="qb8-4T-3RG"/>
+                </tableViewController>
+            </viewControllers>
+            <point key="canvasLocation" x="-843" y="114"/>
+        </navigationController>
     </objects>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

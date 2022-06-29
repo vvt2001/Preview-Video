@@ -16,6 +16,8 @@
 		E4C26840286BE0FC004193F2 /* Preview_VideoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C2683F286BE0FC004193F2 /* Preview_VideoUITests.swift */; };
 		E4C26842286BE0FC004193F2 /* Preview_VideoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C26841286BE0FC004193F2 /* Preview_VideoUITestsLaunchTests.swift */; };
 		E4C2684F286BE56A004193F2 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C2684E286BE56A004193F2 /* ViewController.xib */; };
+		E4C26852286BE736004193F2 /* PreviewVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C26850286BE736004193F2 /* PreviewVideoViewController.swift */; };
+		E4C26853286BE736004193F2 /* PreviewVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		E4C2683F286BE0FC004193F2 /* Preview_VideoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_VideoUITests.swift; sourceTree = "<group>"; };
 		E4C26841286BE0FC004193F2 /* Preview_VideoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_VideoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E4C2684E286BE56A004193F2 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		E4C26850286BE736004193F2 /* PreviewVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVideoViewController.swift; sourceTree = "<group>"; };
+		E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewVideoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				E4C26820286BE0F9004193F2 /* SceneDelegate.swift */,
 				E4C26822286BE0F9004193F2 /* ViewController.swift */,
 				E4C2684E286BE56A004193F2 /* ViewController.xib */,
+				E4C26850286BE736004193F2 /* PreviewVideoViewController.swift */,
+				E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */,
 				E4C26827286BE0FC004193F2 /* Assets.xcassets */,
 				E4C26829286BE0FC004193F2 /* LaunchScreen.storyboard */,
 				E4C2682C286BE0FC004193F2 /* Info.plist */,
@@ -234,6 +240,7 @@
 				E4C2682B286BE0FC004193F2 /* LaunchScreen.storyboard in Resources */,
 				E4C2684F286BE56A004193F2 /* ViewController.xib in Resources */,
 				E4C26828286BE0FC004193F2 /* Assets.xcassets in Resources */,
+				E4C26853286BE736004193F2 /* PreviewVideoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +267,7 @@
 			files = (
 				E4C26823286BE0F9004193F2 /* ViewController.swift in Sources */,
 				E4C2681F286BE0F9004193F2 /* AppDelegate.swift in Sources */,
+				E4C26852286BE736004193F2 /* PreviewVideoViewController.swift in Sources */,
 				E4C26821286BE0F9004193F2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
