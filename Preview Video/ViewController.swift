@@ -16,8 +16,9 @@ class ViewController: UIViewController {
     private var videoPHAssets = [PHAsset]()
     
     @IBAction private func showVideoPreview(_ sender: UIButton){
+        let randomVideoAssets = self.videoPHAssets.randomElement()
         let previewVideoViewController = PreviewVideoViewController()
-        previewVideoViewController.videoPHAssets = videoPHAssets
+        previewVideoViewController.selectedVideoAsset = randomVideoAssets
         self.navigationController?.pushViewController(previewVideoViewController, animated: true)
     }
     

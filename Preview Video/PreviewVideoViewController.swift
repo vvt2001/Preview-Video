@@ -19,13 +19,12 @@ class PreviewVideoViewController: UIViewController {
     @IBOutlet private weak var playAndPauseButton: UIButton!
     @IBOutlet private var tapRecognizer: UITapGestureRecognizer!
     
-    var videoPHAssets: [PHAsset]!
-    private var currentAsset: PHAsset?
+    var selectedVideoAsset: PHAsset!
     private var totalDuration: Int?
     private var currentTime: Int = 0
     private var isPlaying: Bool = true
     private var playerLayer = AVPlayerLayer()
-    private var hideButtonItem: DispatchWorkItem?
+    private var hideButtonWorkItem: DispatchWorkItem?
     
     @IBAction private func goBack(_ sender: UIButton){
         self.navigationController?.popViewController(animated: true)
@@ -49,17 +48,17 @@ class PreviewVideoViewController: UIViewController {
     }
     
     private func hideButtonWithSchedule() {
-        hideButtonItem = DispatchWorkItem {
+        hideButtonWorkItem = DispatchWorkItem {
             self.hideButton()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: hideButtonItem!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: hideButtonWorkItem!)
     }
 
     private func invalidateItem() {
-        hideButtonItem?.cancel()
+        hideButtonWorkItem?.cancel()
     }
     
-    @IBAction private func handleTap(_ sender: UITapGestureRecognizer){
+    @IBAction private func handleScreenTapGesture(_ sender: UITapGestureRecognizer){
         invalidateItem()
         UIView.transition(with: self.playAndPauseButton, duration: 0.5,
                           options: .transitionCrossDissolve,
@@ -70,9 +69,7 @@ class PreviewVideoViewController: UIViewController {
     }
     
     private func setupVideoView(){
-        let randomVideoAssets = self.videoPHAssets.randomElement()
-        currentAsset = randomVideoAssets
-        currentAsset?.getAVAsset(completionHandler: { asset in
+        selectedVideoAsset?.getAVAsset(completionHandler: { asset in
             //setup player
             let playerItem = AVPlayerItem(asset: asset!)
             let currentAsset = AVPlayer(playerItem: playerItem)
@@ -106,16 +103,16 @@ class PreviewVideoViewController: UIViewController {
     
     private func setVideoTimeLabel (){
         // get video's duration
-        if currentAsset != nil{
-            let minutes = Int(currentAsset!.duration / 60)
-            let seconds = Int(currentAsset!.duration.truncatingRemainder(dividingBy: 60))
+        if selectedVideoAsset != nil{
+            let minutes = Int(selectedVideoAsset!.duration / 60)
+            let seconds = Int(selectedVideoAsset!.duration.truncatingRemainder(dividingBy: 60))
             let minutesLabel = String(minutes)
             var secondsLabel = String(seconds)
             if seconds < 10{
                 secondsLabel = "0" + secondsLabel
             }
             totalDurationLabel.text =  minutesLabel + ":" + secondsLabel
-            totalDuration = Int(currentAsset!.duration)
+            totalDuration = Int(selectedVideoAsset!.duration)
         }
         else{
             totalDurationLabel.text = ""
