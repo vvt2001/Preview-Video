@@ -104,14 +104,7 @@ class PreviewVideoViewController: UIViewController {
     private func setVideoTimeLabel (){
         // get video's duration
         if selectedVideoAsset != nil{
-            let minutes = Int(selectedVideoAsset!.duration / 60)
-            let seconds = Int(selectedVideoAsset!.duration.truncatingRemainder(dividingBy: 60))
-            let minutesLabel = String(minutes)
-            var secondsLabel = String(seconds)
-            if seconds < 10{
-                secondsLabel = "0" + secondsLabel
-            }
-            totalDurationLabel.text =  minutesLabel + ":" + secondsLabel
+            totalDurationLabel.text =  selectedVideoAsset.duration.getTimeLabel()
             totalDuration = Int(selectedVideoAsset!.duration)
         }
         else{

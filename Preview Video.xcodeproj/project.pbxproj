@@ -20,6 +20,7 @@
 		E4C26853286BE736004193F2 /* PreviewVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */; };
 		E4C26855286BF3FA004193F2 /* PHAssetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C26854286BF3FA004193F2 /* PHAssetExtension.swift */; };
 		E4C26857286C2D7D004193F2 /* UISliderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C26856286C2D7D004193F2 /* UISliderExtension.swift */; };
+		E4C26859286EBDA7004193F2 /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C26858286EBDA7004193F2 /* TimeIntervalExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewVideoViewController.xib; sourceTree = "<group>"; };
 		E4C26854286BF3FA004193F2 /* PHAssetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetExtension.swift; sourceTree = "<group>"; };
 		E4C26856286C2D7D004193F2 /* UISliderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISliderExtension.swift; sourceTree = "<group>"; };
+		E4C26858286EBDA7004193F2 /* TimeIntervalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				E4C26851286BE736004193F2 /* PreviewVideoViewController.xib */,
 				E4C26854286BF3FA004193F2 /* PHAssetExtension.swift */,
 				E4C26856286C2D7D004193F2 /* UISliderExtension.swift */,
+				E4C26858286EBDA7004193F2 /* TimeIntervalExtension.swift */,
 				E4C26827286BE0FC004193F2 /* Assets.xcassets */,
 				E4C26829286BE0FC004193F2 /* LaunchScreen.storyboard */,
 				E4C2682C286BE0FC004193F2 /* Info.plist */,
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C26859286EBDA7004193F2 /* TimeIntervalExtension.swift in Sources */,
 				E4C26823286BE0F9004193F2 /* ViewController.swift in Sources */,
 				E4C2681F286BE0F9004193F2 /* AppDelegate.swift in Sources */,
 				E4C26857286C2D7D004193F2 /* UISliderExtension.swift in Sources */,
