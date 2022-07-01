@@ -26,31 +26,38 @@ class PreviewVideoViewController: UIViewController {
     private var currentTime: Double = 0
     private var isPlaying: Bool = true
     private var playerLayer = AVPlayerLayer()
-    private var player = AVPlayer()
+    private var player: AVPlayer?
     private var hideButtonItem: DispatchWorkItem?
     private var timeObserverToken: Any?
 
     @IBAction private func goBack(_ sender: UIButton){
+        invalidateItem()
+        removePeriodicTimeObserver()
+        DispatchQueue.main.async {
+            self.player!.pause()
+            self.player = nil
+            self.playerLayer.removeFromSuperlayer()
+        }
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction private func changeVideoTime(_ sender: UISlider){
         currentTime = totalDuration * Double(seekBarSlider.value/10000)
         currentTimeLabel.text = getTimeString(time: currentTime)
-        player.seek(to: CMTime(seconds: Double(currentTime), preferredTimescale: CMTimeScale(NSEC_PER_SEC)))
+        player!.seek(to: CMTime(seconds: Double(currentTime), preferredTimescale: CMTimeScale(NSEC_PER_SEC)))
     }
     
     @IBAction private func handleSliderPanGesture(_ sender: UIGestureRecognizer){
         switch sender.state{
         case .began, .changed:
             if isPlaying{
-                player.pause()
+                player!.pause()
                 playAndPauseButton.setImage(UIImage(named: "play"), for: .normal)
             }
             temporaryShowButton()
         case .ended:
             if isPlaying{
-                player.play()
+                player!.play()
                 playAndPauseButton.setImage(UIImage(named: "pause"), for: .normal)
             }
         default:
@@ -65,10 +72,10 @@ class PreviewVideoViewController: UIViewController {
     
     @IBAction private func playAndPause(_ sender: UIButton){
         if isPlaying{
-            player.pause()
+            player!.pause()
         }
         else{
-            player.play()
+            player!.play()
         }
         changeButtonState()
         isPlaying = !isPlaying
@@ -123,10 +130,10 @@ class PreviewVideoViewController: UIViewController {
             
             self.addPeriodicTimeObserver()
             
-            NotificationCenter.default.addObserver(self, selector: #selector(self.videoDidEnded), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.videoDidEnded), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
             
             //play video
-            self.player.play()
+            self.player!.play()
         })
     }
     
@@ -138,7 +145,7 @@ class PreviewVideoViewController: UIViewController {
     private func addPeriodicTimeObserver() {
         let time = CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
 
-        timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main, using: { time in
+        timeObserverToken = player!.addPeriodicTimeObserver(forInterval: time, queue: .main, using: { time in
             let currentTime = time.seconds
             self.currentTime = currentTime
             self.seekBarSlider.value = Float(currentTime / self.totalDuration) * 10000
@@ -148,7 +155,7 @@ class PreviewVideoViewController: UIViewController {
     
     private func removePeriodicTimeObserver() {
         if let timeObserverToken = timeObserverToken {
-            player.removeTimeObserver(timeObserverToken)
+            player!.removeTimeObserver(timeObserverToken)
             self.timeObserverToken = nil
         }
     }
@@ -196,13 +203,6 @@ class PreviewVideoViewController: UIViewController {
         setupVideoView()
         totalDuration = currentAsset!.duration
         totalDurationLabel.text = getTimeString(time: totalDuration)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        invalidateItem()
-        removePeriodicTimeObserver()
-        player.pause()
     }
     
     /*

@@ -16,9 +16,24 @@ class ViewController: UIViewController {
     private var videoPHAssets = [PHAsset]()
     
     @IBAction private func showVideoPreview(_ sender: UIButton){
-        let previewVideoViewController = PreviewVideoViewController()
-        previewVideoViewController.videoPHAssets = videoPHAssets
-        self.navigationController?.pushViewController(previewVideoViewController, animated: true)
+        if !videoPHAssets.isEmpty{
+            let previewVideoViewController = PreviewVideoViewController()
+            previewVideoViewController.videoPHAssets = videoPHAssets
+            self.navigationController?.pushViewController(previewVideoViewController, animated: true)
+        }
+        else{
+            showAlert()
+        }
+    }
+    
+    private func showAlert(){
+        let title = "Error"
+        let message = "Library has no video to preview"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func giveSelectorViewRoundEdges(){
@@ -37,7 +52,7 @@ class ViewController: UIViewController {
         selectVideoButton.layer.shadowColor = selectVideoButton.backgroundColor?.cgColor
     }
     
-    private func loadAssetFromPhotos(){
+    func loadAssetFromPhotos(){
         PHPhotoLibrary.requestAuthorization{ status in
             if status == .authorized {
                 let videoAssets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
@@ -60,6 +75,5 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         giveSelectorViewRoundEdges()
     }
-
 }
 
