@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     private func setupButton(){
-        selectVideoButton.layer.cornerRadius = 0.46 * selectVideoButton.bounds.size.width
+        selectVideoButton.layer.cornerRadius = 0.5 * selectVideoButton.bounds.size.width
         selectVideoButton.layer.shadowRadius = 15
         selectVideoButton.layer.shadowOpacity = 0.7
         selectVideoButton.layer.shadowColor = selectVideoButton.backgroundColor?.cgColor

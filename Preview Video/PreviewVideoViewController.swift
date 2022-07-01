@@ -113,7 +113,7 @@ class PreviewVideoViewController: UIViewController {
     }
     
     private func setupPlayAndPauseButton(){
-        playAndPauseButton.layer.cornerRadius = 0.46 * playAndPauseButton.frame.width
+        playAndPauseButton.layer.cornerRadius = 0.5 * playAndPauseButton.frame.width
         hideButtonWithSchedule()
     }
     

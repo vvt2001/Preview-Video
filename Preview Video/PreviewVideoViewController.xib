@@ -129,7 +129,7 @@
         </view>
         <tapGestureRecognizer id="b6Z-iv-8Ub">
             <connections>
-                <action selector="handleTap:" destination="-1" id="Hm8-ji-FOH"/>
+                <action selector="handleScreenTapGesture:" destination="-1" id="SyC-CB-8Ag"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
